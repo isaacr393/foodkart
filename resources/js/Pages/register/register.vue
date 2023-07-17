@@ -1,38 +1,48 @@
 <template>
-    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height:100%; ">
-        <header style="display: flex; justify-content: space-between; width: 100%;">
-            <h2 style="display: flex; justify-content: end; width: 52%;">Registro</h2>  
-            <div  >{{ currentStep + " / 8" }} <span style="margin-left: 10px; cursor: pointer;" @click="reloadForm"> RELOAD </span> </div>
+    <div style="width: 100%; height:100vh; ">
+        <header style="display: flex; justify-content: space-between; width: 100%; background-color: #4d4b4b; color:white">
+            <h5 style="display: flex; justify-content: end; align-items: center; width: 52%;">Registro</h5>  
+            <div style="display: flex; justify-content: end; align-items: center; " >
+                {{ currentStep + " / 8" }} <span style="margin-left: 10px; cursor: pointer;" @click="reloadForm"> RELOAD </span> 
+            </div>
         </header>
 
+        <div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 80%;">
+            <Language  v-if="currentStep == 1" @setLang="setLang" />
+            <Terminos v-if="currentStep == 2" @setLang="setLang" @prev="currentStep--" @next="currentStep++"/>
+            <EmailBirthday v-if="currentStep == 3"  @prev="reloadForm" @formSet="formSet"/>
+        </div>
 
-        <Language  v-if="currentStep == 1" @setLang="setLang" />
-
-        <Terminos v-if="currentStep == 2" @setLang="setLang" @prev="currentStep--" @next="currentStep++"/>
     </div>
 </template>
 
 <script>
+import EmailBirthday from './EmailBirthday.vue';
 import Language from './language.vue';
 import Terminos from './terminos.vue';
 export default {
     data(){
         return {
-            currentStep: 2,
+            currentStep: 3,
             form:{},
         }
     },
 
-    components:{ Language, Terminos },
+    components:{ Language, Terminos, EmailBirthday },
 
     methods:{
         setLang(lang){
-            console.log('here',lang)
             this.currentStep = 2
         },
 
-        reloadForm(){
+        formSet(form){
+            this.form = { ...form }
+            this.currentStep++
+        },
 
+        reloadForm(){
+            this.form = {}
+            this.currentStep--
         }
     }
 }

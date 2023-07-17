@@ -11,10 +11,12 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('bootstrap-5.3.0-dist/css/bootstrap.css') }}">
 
         <!-- Scripts -->
         @routes
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <script src="{{ asset('bootstrap-5.3.0-dist/js/bootstrap.js') }}" defer></script>
         @inertiaHead
     </head>
     <body class="font-sans antialiased">

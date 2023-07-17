@@ -7,7 +7,7 @@
         </div>
 
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; width: 70%; height: 300px; background-color: #1e1f1e;">
-            <h2 style="text-align: center;"> TERMINOS  Y CONDICIONES, AL ADQUIRIR UN TICKET EL PILOTO ACEPTA Y SE COMPROMETE A CUMPLIR ESTRICTAMENTE LAS SIGUIENTES NORMAS DE CUMPLIMIENTO </h2>
+            <h5 style="text-align: center;"> TERMINOS  Y CONDICIONES, AL ADQUIRIR UN TICKET EL PILOTO ACEPTA Y SE COMPROMETE A CUMPLIR ESTRICTAMENTE LAS SIGUIENTES NORMAS DE CUMPLIMIENTO </h5>
             <p>Lea los terminos, aceptelos y presione siguiente</p>
         </div>
 
