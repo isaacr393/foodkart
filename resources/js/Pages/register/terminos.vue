@@ -13,11 +13,10 @@
 
         <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; width: 70%; height: 50px; background-color: #1e1f1e;">
             <p style="margin-left: 15px;">Aceptar terminos y condiciones</p>
-            <div>
-                <toggle-button :value="false"
-               color="#82C7EB"
-               :sync="true"
-               :labels="true"/>
+            <div style="margin-right: 20px;">
+                <Toggle
+                    v-model="aceptado"
+                ></Toggle>
             </div>            
         </div>
 
@@ -30,7 +29,7 @@
                 </button>
             </div>
             <div style="display: flex; justify-content: center; width:50% ;" >
-                <button class="btn btn-inverse" @click="next" style="width: 100%;">
+                <button class="btn btn-inverse" @click="next" style="width: 100%;" :disabled="aceptado == false" >
                     SIGUIENTE
                 </button>
             </div>
@@ -40,10 +39,10 @@
 </template>
 
 <script>
-import ToggleButton from 'vue-js-toggle-button'
- 
-Vue.use(ToggleButton)
+import Toggle from '@vueform/toggle'
 export default {
+
+    components: { Toggle, },
 
     data(){
         return{
@@ -60,11 +59,6 @@ export default {
             this.$emit('next')  
         },
     },
-
-    components:{ }
 }
 </script>
-
-<style>
-
-</style>
+<style src="@vueform/toggle/themes/default.css"></style>
