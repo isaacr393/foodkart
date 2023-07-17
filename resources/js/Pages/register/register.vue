@@ -12,6 +12,8 @@
             <Terminos v-if="currentStep == 2" @setLang="setLang" @prev="currentStep--" @next="currentStep++"/>
             <EmailBirthday v-if="currentStep == 3"  @prev="reloadForm" @formSet="formSet"/>
             <DetallesPersonales v-if="currentStep == 4"  @prev="reloadForm" @userRegistered="userRegistered" />
+            <Picture v-if="currentStep == 5"  @prev="currentStep--" @imgSet="imgSet" />
+
         </div>
 
     </div>
@@ -22,16 +24,17 @@ import DetallesPersonales from './detallesPersonales.vue';
 import EmailBirthday from './EmailBirthday.vue';
 import Language from './language.vue';
 import Terminos from './terminos.vue';
+import Picture from './Picture.vue';
 export default {
     data(){
         return {
-            currentStep: 4,
+            currentStep: 5,
             form:{},
             users:[],
         }
     },
 
-    components:{ Language, Terminos, EmailBirthday, DetallesPersonales },
+    components:{ Language, Terminos, EmailBirthday, DetallesPersonales, Picture },
 
     methods:{
         setLang(lang){
@@ -57,6 +60,12 @@ export default {
             this.form = obj
 
             this.users.push(this.form)
+            this.currentStep++
+        },
+
+        imgSet( { image } ){
+            //console.log( this.users[ this.users.length - 1] )
+            this.users[ this.users.length - 1].img = image            
         }
     }
 }
