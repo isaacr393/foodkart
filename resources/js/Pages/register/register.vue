@@ -7,28 +7,31 @@
             </div>
         </header>
 
-        <div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 80%;">
+        <div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 90%;">
             <Language  v-if="currentStep == 1" @setLang="setLang" />
             <Terminos v-if="currentStep == 2" @setLang="setLang" @prev="currentStep--" @next="currentStep++"/>
             <EmailBirthday v-if="currentStep == 3"  @prev="reloadForm" @formSet="formSet"/>
+            <DetallesPersonales v-if="currentStep == 4"  @prev="reloadForm" @userRegistered="userRegistered" />
         </div>
 
     </div>
 </template>
 
 <script>
+import DetallesPersonales from './detallesPersonales.vue';
 import EmailBirthday from './EmailBirthday.vue';
 import Language from './language.vue';
 import Terminos from './terminos.vue';
 export default {
     data(){
         return {
-            currentStep: 3,
+            currentStep: 4,
             form:{},
+            users:[],
         }
     },
 
-    components:{ Language, Terminos, EmailBirthday },
+    components:{ Language, Terminos, EmailBirthday, DetallesPersonales },
 
     methods:{
         setLang(lang){
@@ -43,6 +46,17 @@ export default {
         reloadForm(){
             this.form = {}
             this.currentStep--
+        },
+
+        userRegistered( user ){
+            let obj = {
+                ...this.form,
+                ...user,
+                menor: false
+            }
+            this.form = obj
+
+            this.users.push(this.form)
         }
     }
 }
